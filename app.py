@@ -31,8 +31,8 @@ def images_to_txt(path):
 if pdf_file:
     st.info("PDF loaded")
     # stringio = pdf_file.getvalue()
-    # pdf_path = pdf_file.read()
-    st.write(pdf_file.read())
+    pdf_path = pdf_file.read()
+    st.write(pdf_path)
     texts, nb_pages = images_to_txt(pdf_file.read())
     pages = 'Total pages: '+str(nb_pages)
     st.info(pages)
