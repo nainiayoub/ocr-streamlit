@@ -29,8 +29,8 @@ if pdf_file:
     texts, nb_pages = images_to_txt(pdf_file.read())
     pages = 'Total pages: '+str(nb_pages)
     st.info(pages)
-    # output_text = "\n\n".join(texts)
-    st.download_button("Download txt", texts)
+    output_text = "\n\n".join(texts)
+    st.download_button("Download txt", output_text)
     # for i in images:
     #     c = c + 1
     #     pil_im = i # assuming that we're interested in the first page only
