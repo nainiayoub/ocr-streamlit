@@ -2,8 +2,7 @@ import streamlit as st
 import pdf2image
 import pytesseract
 from pytesseract import Output, TesseractError
-import re
-from io import StringIO
+
 
 pdf_file = st.file_uploader("Load your PDF file", type="pdf")
 languages = {
@@ -15,7 +14,7 @@ languages = {
 option = st.selectbox('Select the document language', list(languages.keys()))
 
 st.write('You selected:', option)
-
+@st.cache
 def images_to_txt(path):
     images = pdf2image.convert_from_bytes(path)
     all_text = []
