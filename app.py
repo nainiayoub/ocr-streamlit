@@ -21,7 +21,7 @@ if pdf_file:
         text = " ".join(ocr_dict['text'])
         
         text = re.sub('[ ]{2,}', '\n', text)
-        print(text)
+        st.write(text)
         # text = ' '. join((text.split()))
         filename = "page_"+str(c)+".txt"
         with open("./"+filename, 'w', encoding="utf-8") as file:
