@@ -13,7 +13,11 @@ def images_to_txt(path):
     all_text = []
     for i in images:
         pil_im = i
-        text = pytesseract.image_to_string(pil_im, lang='eng')
+        # text = pytesseract.image_to_string(pil_im, lang='eng')
+        ocr_dict = pytesseract.image_to_data(pil_im, lang='eng', output_type=Output.DICT)
+        # ocr_dict now holds all the OCR info including text and location on the image
+        text = " ".join(ocr_dict['text'])
+        text = re.sub('[ ]{2,}', '\n', text)
         all_text.append(text)
     return all_text, len(all_text)
 
