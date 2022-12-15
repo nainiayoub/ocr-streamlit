@@ -8,7 +8,7 @@ from io import StringIO
 pdf_file = st.file_uploader("Load your PDF file", type="pdf")
 languages = {
     'English': 'eng',
-    'French': 'fra'
+    'French': 'fra',
     'Arabic': 'ara',
     'Spanish': 'spa',
 }
