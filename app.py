@@ -6,14 +6,22 @@ import re
 from io import StringIO
 
 pdf_file = st.file_uploader("Load your PDF file", type="pdf")
+languages = {
+    'English': 'eng',
+    'French': 'fra'
+    'Arabic': 'ara',
+    'Spanish': 'spa',
+}
+option = st.selectbox('Select the document language', list(languages.keys()))
 
+st.write('You selected:', option)
 
 def images_to_txt(path):
     images = pdf2image.convert_from_bytes(path)
     all_text = []
     for i in images:
         pil_im = i
-        text = pytesseract.image_to_string(pil_im, lang='eng')
+        text = pytesseract.image_to_string(pil_im, lang=languages[option])
         # ocr_dict = pytesseract.image_to_data(pil_im, lang='eng', output_type=Output.DICT)
         # ocr_dict now holds all the OCR info including text and location on the image
         # text = " ".join(ocr_dict['text'])
@@ -31,16 +39,3 @@ if pdf_file:
     st.info(pages)
     output_text = "\n\n".join(texts)
     st.download_button("Download txt", output_text)
-    # for i in images:
-    #     c = c + 1
-    #     pil_im = i # assuming that we're interested in the first page only
-    #     ocr_dict = pytesseract.image_to_data(pil_im, lang='eng', output_type=Output.DICT)
-    #     # ocr_dict now holds all the OCR info including text and location on the image
-    #     text = " ".join(ocr_dict['text'])
-        
-    #     text = re.sub('[ ]{2,}', '\n', text)
-    #     st.write(text)
-    #     # text = ' '. join((text.split()))
-    #     filename = "page_"+str(c)+".txt"
-    #     with open("./"+filename, 'w', encoding="utf-8") as file:
-    #         file.write(text)
